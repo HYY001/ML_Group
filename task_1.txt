@@ -1,0 +1,18 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+Catherine:Hi, simon! I’ve done the task.
+=======
+胡琬祺：GIT test！
+>>>>>>> bf0f6bde4b2b24f853b0a7036050ef8e1bf99167
+=======
+﻿杨博：打卡签到
+>>>>>>> b1446a0da252d8251e3abae69c6a0fc90b3a13d0
+=======
+刘勃：TooYoung!
+>>>>>>> Bo Liu
+=======
+高士杰 Hello World !
+>>>>>>> 9d7cb965ec204ba9b3f5f0990160466466a966ac
+谭啸宇：Done!Thanks!
