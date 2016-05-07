@@ -1,0 +1,66 @@
+'mvnpdf' is a function from the file C:\Octave\Octave-4.0.1\share\octave\packages\statistics-1.2.4\mvnpdf.m
+
+ -- Function File: Y = mvnpdf (X)
+ -- Function File: Y = mvnpdf (X, MU)
+ -- Function File: Y = mvnpdf (X, MU, SIGMA)
+     Compute multivariate normal pdf for X given mean MU and covariance
+     matrix SIGMA.  The dimension of X is D x P, MU is 1 x P and SIGMA
+     is P x P. The normal pdf is defined as
+
+          1/Y^2 = (2 pi)^P |SIGMA| exp { (X-MU)' inv(SIGMA) (X-MU) }
+
+     *References*
+
+     NIST Engineering Statistics Handbook 6.5.4.2
+     http://www.itl.nist.gov/div898/handbook/pmc/section5/pmc542.htm
+
+     *Algorithm*
+
+     Using Cholesky factorization on the positive definite covariance
+     matrix:
+
+          R = chol (SIGMA);
+
+     where R'*R = SIGMA. Being upper triangular, the determinant of R
+     is  trivially the product of the diagonal, and the determinant of
+     SIGMA is the square of this:
+
+          DET = prod (diag (R))^2;
+
+     The formula asks for the square root of the determinant, so no
+     need to square it.
+
+     The exponential argument A = X' * inv (SIGMA) * X
+
+          A = X' * inv (SIGMA) * X
+            = X' * inv (R' * R) * X
+            = X' * inv (R) * inv(R') * X
+
+     Given that inv (R') == inv(R)', at least in theory if not
+     numerically,
+
+          A  = (X' / R) * (X'/R)' = sumsq (X'/R)
+
+     The interface takes the parameters to the multivariate normal in
+     columns rather than rows, so we are actually dealing with the
+     transpose:
+
+          A = sumsq (X/r)
+
+     and the final result is:
+
+          R = chol (SIGMA)
+          Y = (2*pi)^(-P/2) * exp (-sumsq ((X-MU)/R, 2)/2) / prod (diag (R))
+
+     See also: mvncdf, mvnrnd.
+
+
+
+
+Additional help for built-in functions and operators is
+available in the online version of the manual.  Use the command
+'doc <topic>' to search the manual index.
+
+Help and information about Octave is also available on the WWW
+at http://www.octave.org and via the help@octave.org
+mailing list.
